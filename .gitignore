@@ -1,0 +1,9 @@
+
+.idea/inspectionProfiles/profiles_settings.xml
+.env
+/.idea
+/blog
+db.sqlite3
+/sensive_blog
+/media
+.editorconfig
