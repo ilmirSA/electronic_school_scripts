@@ -23,16 +23,17 @@ def find_student(name):
     try:
         return Schoolkid.objects.get(full_name=name)
     except (
-            Schoolkid.MultipleObjectsReturned, Schoolkid.MultipleObjectsReturned, Schoolkid.DoesNotExist) as error:
+            Schoolkid.MultipleObjectsReturned,Schoolkid.DoesNotExist) as error:
         print(f"Произошла ошибка при поиске студента! {error}")
 
 
 def create_commendation(child, lesson_name):
     lesson = Lesson.objects.filter(year_of_study=child.year_of_study, group_letter=child.group_letter).filter(
         subject__title=lesson_name).first()
-    compliment = random.choice(COMPLIMENTS)
-    Commendation.objects.create(text=compliment, created=lesson.date, schoolkid=child, subject=lesson.subject,
-                                teacher=lesson.teacher)
+    if lesson:
+        compliment = random.choice(COMPLIMENTS)
+        Commendation.objects.create(text=compliment, created=lesson.date, schoolkid=child, subject=lesson.subject,
+                                    teacher=lesson.teacher)
 
 
 def fix_marks(child):
