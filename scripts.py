@@ -34,6 +34,9 @@ def create_commendation(child, lesson_name):
         compliment = random.choice(COMPLIMENTS)
         Commendation.objects.create(text=compliment, created=lesson.date, schoolkid=child, subject=lesson.subject,
                                     teacher=lesson.teacher)
+        print("Комплимент удачно создан")
+    else:
+        print("Не удалось создать комплимент")
 
 
 def fix_marks(child):
@@ -41,5 +44,5 @@ def fix_marks(child):
 
 
 def remove_chastisements(child):
-    zams = Chastisement.objects.filter(schoolkid=child)
-    zams.delete()
+    Chastisement.objects.filter(schoolkid=child).delete()
+
